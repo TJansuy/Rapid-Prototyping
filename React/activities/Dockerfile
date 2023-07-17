@@ -11,5 +11,4 @@ COPY . .
 RUN npm install -g react-scripts --silent
 RUN npm install --silent
 
-
 ENTRYPOINT ["npm", "run", "start"]
