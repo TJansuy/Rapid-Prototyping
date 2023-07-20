@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Stage, Sprite, Container, Text, useTick } from '@pixi/react';
 import Keyboard from './keyboardInput';
 
@@ -26,13 +26,16 @@ const Player = () => {
 }
 
 export default function GameComponent() {
+    useEffect(() => {
+        Keyboard.init();
+        return () => {Keyboard.del()};
+    }, []); // Set dependencies such that this only triggers once on render.
 
     return (
         <>
             <div>Hello Component!</div>
             <Stage 
-            width={600} height={600} 
-            onMount={Keyboard.init} onUnmount={Keyboard.del}> 
+            width={600} height={600}> 
                 <Player />
                 
                 <Container x={400} y={330}>

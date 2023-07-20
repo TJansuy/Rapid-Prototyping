@@ -1,5 +1,3 @@
-import { keyboard } from "@testing-library/user-event/dist/keyboard";
-
 class Keyboard {
     public static up: boolean;
     public static down: boolean;
