@@ -1,16 +1,6 @@
-FROM node:slim
+FROM httpd:alpine
 
-WORKDIR /app
+EXPOSE 80
 
-ENV NODE_OPTIONS --openssl-legacy-provider
-
-EXPOSE 3000
-
-COPY ./package.json .
-RUN npm install --silent
-COPY . .
+COPY ./build /usr/local/apache2/htdocs/
 RUN echo "SKIP_PREFLIGHT_CHECK=true" > ./.env
-# RUN npm run build
-# RUN rm -rf ./node_modules/
-
-ENTRYPOINT ["npm", "run", "start"]
