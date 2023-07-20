@@ -1,12 +1,16 @@
 import React from 'react';
 import { Stage, Sprite, Container, Text } from '@pixi/react';
+import Keyboard from './keyboardInput';
 
 export default function GameComponent() {
-
+    
+    
     return (
         <>
             <div>Hello Component!</div>
-            <Stage>
+            <Stage 
+            width={600} height={600} 
+            onMount={Keyboard.init} onUnmount={Keyboard.del}> 
                 <Sprite
                     image="https://pixijs.io/pixi-react/img/bunny.png"
                     x={400}
