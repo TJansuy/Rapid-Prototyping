@@ -5,20 +5,22 @@ import Keyboard from './keyboardInput';
 const MoveSpeed = 5;
 
 const Player = () => {
-    const [x, setX] = useState(400);
-    const [y, setY] = useState(270);
+    const [currentX, setX] = useState(400);
+    const [currentY, setY] = useState(270);
     useTick((delta) => {
-        if (Keyboard.up)    {setY(y - delta * MoveSpeed)};
-        if (Keyboard.down)  {setY(y + delta * MoveSpeed)};
-        if (Keyboard.left)  {setX(x - delta * MoveSpeed)};
-        if (Keyboard.right) {setX(x + delta * MoveSpeed)};
-        console.log(x, y);
+        let x = currentX, y = currentY;
+        if (Keyboard.up)    {y = (y - delta * MoveSpeed)};
+        if (Keyboard.down)  {y = (y + delta * MoveSpeed)};
+        if (Keyboard.left)  {x = (x - delta * MoveSpeed)};
+        if (Keyboard.right) {x = (x + delta * MoveSpeed)};
+        setX(x);
+        setY(y);
     })
 
     return (<Sprite
         image="https://pixijs.io/pixi-react/img/bunny.png"
-        x={x}
-        y={y}
+        x={currentX}
+        y={currentY}
         anchor={{ x: 0.5, y: 0.5 }}
     />);
 }
