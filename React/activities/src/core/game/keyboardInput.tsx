@@ -50,6 +50,13 @@ class Keyboard {
         }
     }
 
+    private static reset = () => {
+        Keyboard.up = false;
+        Keyboard.down = false;
+        Keyboard.left = false;
+        Keyboard.right = false;
+    }
+
     public static init = () => {
         console.log("Adding Keyboard")
         window.addEventListener("keydown", Keyboard.onKeyDownHandler, true);
@@ -60,6 +67,7 @@ class Keyboard {
         console.log("Removing Keyboard")
         window.removeEventListener("keydown", Keyboard.onKeyDownHandler, true);
         window.removeEventListener("keyup", Keyboard.onKeyUpHandler, true);
+        Keyboard.reset();
     }
 }
 
