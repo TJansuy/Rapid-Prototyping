@@ -31,7 +31,16 @@ const Player = () => {
 }
 
 export default function GameComponent() {
-    
+    const [ width , setWidth ] = useState<number>(visualViewport!.width);
+    const [ height, setHeight] = useState<number>(visualViewport!.height);
+
+    useEffect(() => {
+        visualViewport!.onresize = () => {
+            setWidth(visualViewport!.width);
+            setHeight(visualViewport!.height);
+        }
+    }, [width, height])
+
     useEffect(() => {
         Keyboard.init();
         return () => {Keyboard.del()};
@@ -39,9 +48,8 @@ export default function GameComponent() {
 
     return (
         <>
-            <div>Hello Component!</div>
             <Stage 
-                width={600} height={600}> 
+                width={width} height={visualViewport?.height}> 
                 
                 <Container x={0} y={0} sortableChildren
                     eventMode={'static'} 
