@@ -45,13 +45,12 @@ export default function GameComponent() {
                 
                 <Container x={0} y={0} sortableChildren
                     eventMode={'static'} 
-                    onpointermove={Mouse.debugMove}>
+                    onglobalpointermove={Mouse.debugMove}>
                     <Text text="Hello World" eventMode={'static'} onpointerdown={Mouse.debugClick}
                     style={new PIXI.TextStyle({
                         fontSize: 50,
                         fill: '#ffffff'
                     })}/>
-                    <Sprite image={'https://pixijs.io/pixi-react/img/bunny.png'} position={0} width={600} height={600}/>
                     <Player />
                 </Container>
             </Stage>
