@@ -3,4 +3,5 @@ services:
     build: .
     ports: 
       - 3000:80
-  
+    volumes:
+      - ./build:/usr/local/apache2/htdocs/

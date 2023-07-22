@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { Stage, Sprite, Container, Text, useTick } from '@pixi/react';
+import { Stage, Sprite, Container, Text, useTick, useApp } from '@pixi/react';
+import * as PIXI from 'pixi.js'
+import '@pixi/events';
 import Keyboard from './keyboardInput';
+import Mouse from './mouseInput';
 
 const MoveSpeed = 5;
 
 const Player = () => {
+    
+
     const [currentX, setX] = useState(400);
     const [currentY, setY] = useState(270);
     useTick((delta) => {
@@ -26,6 +31,7 @@ const Player = () => {
 }
 
 export default function GameComponent() {
+    
     useEffect(() => {
         Keyboard.init();
         return () => {Keyboard.del()};
@@ -35,11 +41,15 @@ export default function GameComponent() {
         <>
             <div>Hello Component!</div>
             <Stage 
-            width={600} height={600}> 
+                width={600} height={600}> 
                 <Player />
                 
-                <Container x={400} y={330}>
-                    <Text text="Hello World" anchor={{ x: 0.5, y: 0.5 }} />
+                <Container x={300} y={300} width={200} height={200} anchor={0.5} eventMode={'static'} onpointermove={Mouse.debugMove}>
+                    <Text text="Hello World" anchor={{ x: 0.5, y: 0.5 }} eventMode={'static'} onclick={Mouse.debugClick}
+                    style={new PIXI.TextStyle({
+                        fontSize: 50,
+                        fill: '#ffffff'
+                    })}/>
                 </Container>
             </Stage>
         </>

@@ -5,7 +5,6 @@ import GameComponent from './core/game/GameComponent';
 function App() {
   return (
     <div className="App">
-      Hello World!
       <GameComponent/>
     </div>
   );
