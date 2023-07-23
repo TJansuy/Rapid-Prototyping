@@ -20,7 +20,7 @@
   "scripts": {
     "docker": "docker compose down; docker image prune --force;npm run build && docker compose build --no-cache && docker compose up --detach",
     "start": "react-scripts start",
-    "build": "export NODE_OPTIONS=--openssl-legacy-provider; react-scripts build",
+    "build": "export NODE_OPTIONS=--openssl-legacy-provider; docker compose down; react-scripts build; docker compose up --detach",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
