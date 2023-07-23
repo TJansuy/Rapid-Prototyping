@@ -4,14 +4,20 @@ import * as PIXI from 'pixi.js'
 import '@pixi/events';
 import Keyboard from './keyboardInput';
 import Mouse from './mouseInput';
+import Assets from './assetLoader';
 
 const MoveSpeed = 5;
 
 const Player = () => {
-    
 
     const [currentX, setX] = useState(400);
     const [currentY, setY] = useState(270);
+    const [sprite, setSprite] = useState('');
+
+    useEffect(() => {
+        setSprite(Assets.get('player'));
+    }, []);
+
     useTick((delta) => {
         let x = currentX, y = currentY;
         if (Keyboard.up)    {y = (y - delta * MoveSpeed)};
@@ -20,14 +26,18 @@ const Player = () => {
         if (Keyboard.right) {x = (x + delta * MoveSpeed)};
         setX(x);
         setY(y);
-    })
+    });
 
-    return (<Sprite
-        image="https://pixijs.io/pixi-react/img/bunny.png"
-        x={currentX}
-        y={currentY}
-        anchor={{ x: 0.5, y: 0.5 }}
-    />);
+    return (<>
+            {sprite && 
+                <Sprite
+                source={sprite}
+                x={currentX}
+                y={currentY}
+                anchor={{ x: 0.5, y: 0.5 }} />
+            }
+        </>
+    );
 }
 
 export default function GameComponent() {
@@ -52,13 +62,11 @@ export default function GameComponent() {
                 width={width} height={visualViewport?.height}> 
                 
                 <Container x={0} y={0} sortableChildren
-                    eventMode={'static'} 
-                    onglobalpointermove={Mouse.debugMove}>
+                    eventMode={'static'}>
+
                     <Text text="Hello World" eventMode={'static'} onpointerdown={Mouse.debugClick}
-                    style={new PIXI.TextStyle({
-                        fontSize: 50,
-                        fill: '#ffffff'
-                    })}/>
+                        style={new PIXI.TextStyle({fontSize: 50, fill: '#ffffff'})}/>
+                    
                     <Player />
                 </Container>
             </Stage>
