@@ -13,9 +13,11 @@ const Player = () => {
     const [currentX, setX] = useState(400);
     const [currentY, setY] = useState(270);
     const [sprite, setSprite] = useState('');
-
+    const [reference, setReference] = useState<PIXI.Sprite>();
+    
     const getReference = useCallback((sprite: PIXI.Sprite) => {
         console.log("Player Sprite:", sprite); // Obtain the PIXI.Sprite object
+        setReference(sprite);
     }, []);
 
     useEffect(() => {
@@ -23,11 +25,21 @@ const Player = () => {
     }, []);
 
     useTick((delta) => {
-        let x = currentX, y = currentY;
+        let prevX = currentX, x = currentX;
+        let prevY = currentY, y = currentY;
+
         if (Keyboard.up)    {y = (y - delta * MoveSpeed)};
         if (Keyboard.down)  {y = (y + delta * MoveSpeed)};
         if (Keyboard.left)  {x = (x - delta * MoveSpeed)};
         if (Keyboard.right) {x = (x + delta * MoveSpeed)};
+
+        if (reference) {
+            if      (x > prevX) {reference.scale.x =  1;}
+            else if (x < prevX) {reference.scale.x = -1;}
+
+            if      (y > prevY) {reference.scale.y =  1;} 
+            else if (y < prevY) {reference.scale.y = -1;}
+        }
         setX(x);
         setY(y);
     });
