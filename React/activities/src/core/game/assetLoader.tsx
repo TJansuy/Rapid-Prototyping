@@ -6,7 +6,7 @@ class Assets {
     public static assetLibrary: Record<assetType, {name: string, src: string}> = {
         player : {
             name: "player",
-            src: "https://pixijs.io/pixi-react/img/bunny.png"
+            src: "Assets/character_roundPurple.png"
         },
         test: {
             name: 'test',
