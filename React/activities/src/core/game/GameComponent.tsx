@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Stage, Sprite, Container, Text, useTick, useApp } from '@pixi/react';
 import * as PIXI from 'pixi.js'
 import '@pixi/events';
@@ -13,6 +13,10 @@ const Player = () => {
     const [currentX, setX] = useState(400);
     const [currentY, setY] = useState(270);
     const [sprite, setSprite] = useState('');
+
+    const getReference = useCallback((sprite: PIXI.Sprite) => {
+        console.log("Player Sprite:", sprite); // Obtain the PIXI.Sprite object
+    }, []);
 
     useEffect(() => {
         setSprite(Assets.get('player'));
@@ -32,6 +36,7 @@ const Player = () => {
             {sprite && 
                 <Sprite
                 source={sprite}
+                ref={getReference}
                 x={currentX}
                 y={currentY}
                 anchor={{ x: 0.5, y: 0.5 }} />
