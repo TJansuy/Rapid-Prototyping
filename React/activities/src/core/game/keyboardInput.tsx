@@ -1,4 +1,6 @@
+
 class Keyboard {
+
     public static up: boolean;
     public static down: boolean;
     public static left: boolean;
@@ -48,7 +50,7 @@ class Keyboard {
         }
     }
 
-    private static reset = () => {
+    public static reset = () => {
         Keyboard.up = false;
         Keyboard.down = false;
         Keyboard.left = false;
