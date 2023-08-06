@@ -4,23 +4,21 @@ import '../../../constants';
 import { MoveSpeed } from '../../../constants';
 
 
-const checkMovement = (reference: PIXI.Sprite, delta: number, currentX: number, currentY: number) => {
-    let prevX = currentX, x = currentX;
-    let prevY = currentY, y = currentY;
+const checkMovement = (reference: PIXI.Sprite, delta: number) => {
+    const prevX = reference.position.x;
+    const prevY = reference.position.y;
 
-    if (Keyboard.up)    {y = (y - delta * MoveSpeed)};
-    if (Keyboard.down)  {y = (y + delta * MoveSpeed)};
-    if (Keyboard.left)  {x = (x - delta * MoveSpeed)};
-    if (Keyboard.right) {x = (x + delta * MoveSpeed)};
+    if (Keyboard.up)    {reference.position.y -= delta * MoveSpeed};
+    if (Keyboard.down)  {reference.position.y += delta * MoveSpeed};
+    if (Keyboard.left)  {reference.position.x -= delta * MoveSpeed};
+    if (Keyboard.right) {reference.position.x += delta * MoveSpeed};
 
-    if (reference) {
-        if      (x > prevX) {reference.scale.x =  1;}
-        else if (x < prevX) {reference.scale.x = -1;}
+    if      (reference.position.x > prevX) {reference.scale.x =  1;}
+    else if (reference.position.x < prevX) {reference.scale.x = -1;}
 
-        if      (y > prevY) {reference.scale.y =  1;} 
-        else if (y < prevY) {reference.scale.y = -1;}
-    }
-    return {x: x, y: y};
+    if      (reference.position.y > prevY) {reference.scale.y =  1;} 
+    else if (reference.position.y  < prevY) {reference.scale.y = -1;}
+
 }
 
 export {checkMovement}

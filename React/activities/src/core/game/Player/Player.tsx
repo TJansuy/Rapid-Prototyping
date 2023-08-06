@@ -7,13 +7,13 @@ import { checkMovement } from './move';
 
 export default function Player() {
 
-    const [currentX, setX] = useState(400);
-    const [currentY, setY] = useState(270);
     const [sprite, setSprite] = useState('');
     const [reference, setReference] = useState<PIXI.Sprite>();
     
     const getReference = useCallback((sprite: PIXI.Sprite) => {
         console.log("Player Sprite:", sprite); // Obtain the PIXI.Sprite object
+        sprite.position.x = 400;
+        sprite.position.y = 270;
         setReference(sprite);
     }, []);
 
@@ -23,9 +23,7 @@ export default function Player() {
 
     useTick((delta) => {
         if (reference) {
-           let {x, y} = checkMovement(reference, delta, currentX, currentY);
-            setX(x);
-            setY(y);
+            checkMovement(reference, delta);
         }
     });
 
@@ -34,8 +32,6 @@ export default function Player() {
                 <Sprite
                 source={sprite}
                 ref={getReference}
-                x={currentX}
-                y={currentY}
                 anchor={{ x: 0.5, y: 0.5 }} />
             }
         </>
