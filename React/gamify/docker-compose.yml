@@ -1,0 +1,7 @@
+services:
+  react:
+    build: .
+    ports: 
+      - 3000:80
+    volumes:
+      - ../Assets/kenney_scribble-platformer/PNG/Retina:/usr/local/apache2/htdocs/Assets/
