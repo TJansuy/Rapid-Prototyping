@@ -1,0 +1,6 @@
+.Button {
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    user-select: none;
+}
