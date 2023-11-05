@@ -1,4 +1,5 @@
 #!/bin/bash
-(cd gamify && npm run build)
-docker compose build
-docker compose up --force-recreate
+if cd gamify && npm run build ; then
+    docker compose build
+    docker compose up --force-recreate
+fi
