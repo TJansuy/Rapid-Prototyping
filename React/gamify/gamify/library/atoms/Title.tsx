@@ -15,6 +15,7 @@ interface ITitleProps {
 };
 
 const Title = ({tag = 'h1', children}: ITitleProps) => {
+    console.log(children)
     return <>
         {AllowedTags[tag](children)}
     </>

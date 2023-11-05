@@ -1,15 +1,11 @@
 import './App.css'
-import Label from '../library/atoms/Label';
-import Title from '../library/atoms/Title';
+import Page from "../library/molecules/Page";
 
 function App() {
 
   return (
     <>
-        <Title>
-          First attempt at creating a component with Children
-        </Title>
-        <Label content='Testing'/>
+        <Page title="Test Title" content="Test Content"/>
     </>
   )
 }
